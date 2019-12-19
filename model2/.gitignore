@@ -1,0 +1,32 @@
+/bin/
+
+### Eclipse ###
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+
+# sbteclipse plugin
+.target
+
+### Eclipse Patch ###
+# Eclipse Core
+.project
+
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
+
+### Java ###
+# Compiled class file
+*.class
+
+### Java-Web ###
+## ignoring target file
+target/
