@@ -3,7 +3,7 @@
 	<table class="tab">
 		<caption>내정보보기</caption>
 		<tr height="40%">
-			<td colspan="2"><img alt="pic" src="${pageContext.request.contextPath}/img/info.jpg"
+			<td colspan="2"><img alt="pic" src="${pageContext.request.contextPath}/img/info.png"
 				height="150"></td>
 		</tr>
 		<tr height="15%">

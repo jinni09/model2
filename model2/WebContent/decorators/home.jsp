@@ -3,7 +3,7 @@
 	<center>
 		<h2>Model2</h2>
 		<br>
-		<img alt=""	src="${pageContext.request.contextPath}/img/space.jpg" height="400" />
+		<img alt=""	src="${pageContext.request.contextPath}/img/board.jpg" height="400" />
 		<p>
 		home.jsp
 	</center>
