@@ -11,6 +11,7 @@ public class MyPageTempAction implements CommandProcess{
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
 		return "/member/my/mypagetemp.jsp";
-		}
+	
+	}
 
 }

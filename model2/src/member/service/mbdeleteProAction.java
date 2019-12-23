@@ -7,8 +7,9 @@ import javax.servlet.http.HttpSession;
 import common.service.CommandProcess;
 import member.dao.MemberDao;
 
-public class mbdeleteProForm implements CommandProcess {
+public class mbdeleteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		
 		int result = 0;
 		HttpSession session = request.getSession();
 		String m_no = (String) session.getAttribute("m_no");
@@ -21,7 +22,7 @@ public class mbdeleteProForm implements CommandProcess {
 			request.setAttribute("result", result);
 		}
 		request.setAttribute("result", result);
-
+		
 		return "/member/my/mbdeletePro.jsp";
 
 	}

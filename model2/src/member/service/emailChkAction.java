@@ -8,6 +8,7 @@ import member.dao.MemberDao;
 
 public class emailChkAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		
 		String m_email = request.getParameter("m_email");
 		MemberDao md = MemberDao.getInstance();
 		int result = md.emailCheck(m_email);
@@ -15,5 +16,6 @@ public class emailChkAction implements CommandProcess {
 		request.setAttribute("m_email", m_email);
 
 		return "/member/emailChk.jsp";
+		
 	}
 }

@@ -17,7 +17,6 @@ public class joinProAction implements CommandProcess {
 		
 		MemberDao md = MemberDao.getInstance();
 		int result = md.insert(mb);
-		
 		request.setAttribute("result", result);
 		
 		return "/member/joinPro.jsp";

@@ -12,6 +12,7 @@ public class MyInfoAction implements CommandProcess{
 
 	@Override
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
+		
 		HttpSession session = request.getSession();
 		String m_no  = (String)session.getAttribute("m_no");
 		MemberDao md = MemberDao.getInstance();
@@ -19,6 +20,7 @@ public class MyInfoAction implements CommandProcess{
 		request.setAttribute("mb", mb);
 		
 		return "/member/my/myinfo.jsp";
+		
 	}
 
 }

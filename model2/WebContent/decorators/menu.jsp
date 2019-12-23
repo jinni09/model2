@@ -5,7 +5,7 @@
 		<tr>
 			<td>Menu1</td>
 			<td>Menu2</td>
-			<td><a href="${pageContext.request.contextPath}/board/board.do">Board</a></td>
+			<td><a href="${pageContext.request.contextPath}/board/list.do">Board</a></td>
 			<td>Menu4</td>
 			<td>Menu5</td>
 		</tr>

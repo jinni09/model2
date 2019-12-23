@@ -16,9 +16,7 @@ public class mbupdateProAction implements CommandProcess {
 		mb.setM_nick(request.getParameter("m_nick"));
 		
 		MemberDao mdo = MemberDao.getInstance();
-		
 		int result = mdo.update(mb);
-		
 		request.setAttribute("result", result);
 		
 		return "/member/my/mbupdatePro.jsp";
