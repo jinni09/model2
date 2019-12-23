@@ -7,7 +7,7 @@ import javax.servlet.http.HttpSession;
 import common.service.CommandProcess;
 import member.dao.MemberDao;
 
-public class mbdeleteProAction implements CommandProcess {
+public class MbdeleteProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
 		int result = 0;

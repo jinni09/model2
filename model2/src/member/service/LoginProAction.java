@@ -8,17 +8,24 @@ import common.service.CommandProcess;
 import member.dao.MemberDao;
 import member.model.Member;
 
-public class mbupdateAction implements CommandProcess {
+public class LoginProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
-
+		
+		Member mb = new Member();
 		HttpSession session = request.getSession();
-		String m_no = (String) session.getAttribute("m_no");
+		mb.setM_email(request.getParameter("m_email"));
+		mb.setM_passwd(request.getParameter("m_passwd"));		
+		
 		MemberDao md = MemberDao.getInstance();
-		Member mb = md.select(m_no);
+		int result = md.loginChk(mb.getM_email(), mb.getM_passwd());
 		
-		request.setAttribute("mb", mb);
+		if(result > 0 ) {
+			session.setAttribute("m_no", result+"");
+		}
 		
-		return "/member/my/mbupdate.jsp";
+		request.setAttribute("result", result);
+		
+		return "/member/loginPro.jsp";
 		
 	}
 }

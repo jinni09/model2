@@ -7,7 +7,7 @@ import common.service.CommandProcess;
 import member.dao.MemberDao;
 import member.model.Member;
 
-public class mbupdateProAction implements CommandProcess {
+public class MbupdateProAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 
 		Member mb = new Member();

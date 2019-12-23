@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.service.CommandProcess;
 import member.dao.MemberDao;
 
-public class emailChkAction implements CommandProcess {
+public class EmailChkAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
 		String m_email = request.getParameter("m_email");

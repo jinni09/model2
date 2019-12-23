@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.service.CommandProcess;
 
-public class loginAction implements CommandProcess {
+public class JoinAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
-		return "/member/login.jsp";
+		return "/member/join.jsp";
 		
 	}
 }

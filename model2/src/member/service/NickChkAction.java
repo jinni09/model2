@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.service.CommandProcess;
 import member.dao.MemberDao;
 
-public class nickChkAction implements CommandProcess {
+public class NickChkAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 	
 		String m_nick = request.getParameter("m_nick");
