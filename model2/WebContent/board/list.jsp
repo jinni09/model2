@@ -86,9 +86,13 @@
 			<a href="javascript:locate(${totalPage})">[${totalPage}]</a>
 			<a href="javascript:locate(${startPage+pagePerBlock})">[다음]</a>
 		</c:if>
-
-		<p>
-		<button onclick="location.href='writeForm.do?pageNum=${pageNum}'">글쓰기</button>
+		
+		<c:set var="m_no" value="${sessionScope.m_no}"></c:set>
+		<c:if test="${not empty m_no}">
+			<p>
+			<button onclick="location.href='writeForm.do?pageNum=${pageNum}'">글쓰기</button>
+		</c:if>
+		
 		<p>
 		
 		<select id="searchType">
