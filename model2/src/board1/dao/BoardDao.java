@@ -91,7 +91,7 @@ public class BoardDao {
 		if(searchTxt.equals("")){
 			sql2 = "";
 		}
-		String sql = "select * from (select rowNum rn, a.* from (select brd.*, m_nick, (select count(*) from recommend rcmd where rcmd.brd_no = brd.no) recommend from board1 brd, member m where brd.m_no=m.m_no and del_yn='n' " + sql2 + "order by reg_date desc) a) where rn between ? and ?";
+		String sql = "select * from (select rowNum rn, a.* from (select brd.*, m_nick, (select count(*) from recommend rcmd where rcmd.brd_no = brd.no) recommend from board1 brd, member m where brd.m_no=m.m_no and del_yn='n' " + sql2 + "order by no desc) a) where rn between ? and ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -106,8 +106,8 @@ public class BoardDao {
 				brd.setReadcount(rs.getInt("readcount"));
 				brd.setRecommend(rs.getInt("recommend"));
 				brd.setIp(rs.getString("ip"));
-				brd.setReg_date(rs.getDate("reg_date"));
-				brd.setUp_date(rs.getDate("up_date"));
+				brd.setReg_date(rs.getString("reg_date"));
+				brd.setUp_date(rs.getString("up_date"));
 				brd.setDel_yn(rs.getString("del_yn"));
 				brd.setM_no(rs.getInt("m_no"));
 				brd.setM_nick(rs.getString("m_nick"));
@@ -176,8 +176,8 @@ public class BoardDao {
 				brd.setReadcount(rs.getInt("readcount"));
 				brd.setRecommend(rs.getInt("recommend"));
 				brd.setIp(rs.getString("ip"));
-				brd.setReg_date(rs.getDate("reg_date"));
-				brd.setUp_date(rs.getDate("up_date"));
+				brd.setReg_date(rs.getString("reg_date"));
+				brd.setUp_date(rs.getString("up_date"));
 				brd.setM_no(rs.getInt("m_no"));
 				brd.setM_nick(rs.getString("m_nick"));
 			}
@@ -272,26 +272,26 @@ public class BoardDao {
 		return result;
 	}
 	
-	public int recoCheck(String m_no, int no) {
+	public int recoCheck(int no, String m_no) {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql2 = "select * from recommend where m_no = ? and no = ?";
-		String sql = "insert into recommend values(?,?,sysdate,'n')";
-		String sql3 = "delete from recommend where m_no = ? and no = ?";	
+		String sql2 = "select * from recommend where brd_no = ? and m_no = ?";
+		String sql = "insert into recommend values(?,?,sysdate)";
+		String sql3 = "delete from recommend where brd_no = ? and m_no = ?";	
 		conn = getConnection();
 			try {
 				pstmt = conn.prepareStatement(sql2);
-				pstmt.setString(1, m_no);
-				pstmt.setInt(2, no);
+				pstmt.setInt(1, no);
+				pstmt.setString(2, m_no);
 				rs = pstmt.executeQuery();
 				if(rs.next()){
 					rs.close();
 					pstmt.close();
 					pstmt = conn.prepareStatement(sql3);
-					pstmt.setString(1, m_no);
-					pstmt.setInt(2, no);
+					pstmt.setInt(1, no);
+					pstmt.setString(2, m_no);
 					result = pstmt.executeUpdate();
 					if(result > 0){
 						result = 1;

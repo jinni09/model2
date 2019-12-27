@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <script type="text/javascript">
 	$(function() {
@@ -38,37 +38,28 @@
 </script>
 	
 	<c:if test="${not empty brd}">
-		<table  border="1" width="70%" align="center">
+		<table class="view">
 			<caption>게시글 보기</caption>
 			<tr>
-				<td>제목</td>
-				<td>${brd.subject}</td>
+				<td class="title">제목</td>
+				<td colspan="3">${brd.subject}</td>
 			</tr>
 			<tr>
-				<td>닉네임</td>
+				<td class="title" width="20%">닉네임</td>
 				<td>${brd.m_nick}</td>
-			</tr>
-			<tr>
-				<td>조회수</td>
+				<td class="title" width="10%">조회수</td>
 				<td>${brd.readcount}</td>
 			</tr>
 			<tr>
-				<td>추천수</td>
-				<td>${brd.recommend}</td>
+				<td class="title" width="20%">작성일<c:if test="${null ne brd.up_date}"> (수정일)</c:if></td>
+				<fmt:parseDate var="regDate" pattern="yyyy-MM-dd HH:mm:ss" value="${brd.reg_date}" />
+				<fmt:formatDate var="reg" pattern="yyyy-MM-dd HH:mm" value="${regDate}" />
+				<fmt:parseDate var="upDate" pattern="yyyy-MM-dd HH:mm:ss" value="${brd.up_date}" />
+				<fmt:formatDate var="up" pattern="yyyy-MM-dd HH:mm" value="${upDate}" />
+				<td colspan="3">${reg}<c:if test="${null ne brd.up_date}"> (${up})</c:if></td>
 			</tr>
 			<tr>
-				<td>작성일</td>
-				<td>${brd.reg_date}</td>
-			</tr>
-			<c:if test="${null ne brd.up_date}">
-			<tr>
-				<td>최근수정일</td>
-				<td>${brd.up_date}</td>
-			</tr>
-			</c:if>
-			<tr>
-				<td>내용</td>
-				<td><pre>${brd.content}</pre></td>
+				<td colspan="4"><pre>${brd.content}</pre></td>
 			</tr>
 		</table>
 	</c:if>

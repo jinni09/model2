@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <script type="text/javascript">
 	function locate(pageNum){
@@ -33,7 +34,17 @@
 				<a href="${pageContext.request.contextPath}/board1/view.do?no=${brd.no}&pageNum=${nowPage}">${brd.subject}</a>
 				</td>
 				<td class="nickname">${brd.m_nick}</td>
-				<td class="default">${brd.reg_date}</td>
+				<c:set var="today" value="<%=new java.util.Date()%>" />
+				<fmt:formatDate var="now" pattern="yyyyMMdd" value="${today}" />
+				<fmt:parseDate var="regDate" pattern="yyyy-MM-dd HH:mm:ss" value="${brd.reg_date}" />
+				<fmt:formatDate var="reg" pattern="yyyyMMdd" value="${regDate}" />
+				<c:if test="${now eq reg}">
+					<fmt:formatDate var="date" pattern="HH:mm" value="${regDate}" />
+				</c:if>
+				<c:if test="${now ne reg}">
+					<fmt:formatDate var="date" pattern="yyyy-MM-dd HH:mm" value="${regDate}" />
+				</c:if>
+				<td class="default">${date}</td>
 				<td class="default">${brd.readcount}</td>
 				<td class="default">${brd.recommend}</td>
 			</tr>

@@ -16,3 +16,13 @@ foreign key(m_no) references member(m_no);
 
 drop constraint fk_m_no;
 
+
+--oracle Date 형식 조회 시 시/분/초도 보이게끔 oracle 설정.
+alter session set nls_date_format='YYYY-MM-DD HH24:MI:SS';
+
+
+-- select문
+select * from (select rowNum rn, a.* from 
+(select brd.*, m_nick, (select count(*) from 
+recommend rcmd where rcmd.brd_no = brd.no) recommend from 
+board1 brd, member m where brd.m_no=m.m_no and del_yn='n' order by no desc) a) where rn between 1 and 10;

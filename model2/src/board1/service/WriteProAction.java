@@ -21,6 +21,13 @@ public class WriteProAction implements CommandProcess {
 		BoardDao brdd = BoardDao.getInstance();
 		brd = brdd.insert(brd);
 		
+		/*for(int i=1; i<9928; i++) {
+			String str = i+"";
+			brd.setSubject(request.getParameter("subject")+str);
+			brd.setContent(request.getParameter("content")+str);
+			brd = brdd.insert(brd);
+		}*/ //게시글 9927개 만들기
+		
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("brd", brd);
 		

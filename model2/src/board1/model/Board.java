@@ -1,7 +1,5 @@
 package board1.model;
 
-import java.sql.Date;
-
 public class Board {
 
 	private int no;
@@ -10,8 +8,8 @@ public class Board {
 	private int readcount;
 	private int recommend;
 	private String ip;
-	private Date reg_date;
-	private Date up_date;
+	private String reg_date;
+	private String up_date;
 	private String del_yn;
 	private int m_no;
 	private String m_nick;
@@ -65,19 +63,19 @@ public class Board {
 		this.ip = ip;
 	}
 
-	public Date getReg_date() {
+	public String getReg_date() {
 		return reg_date;
 	}
 
-	public void setReg_date(Date reg_date) {
+	public void setReg_date(String reg_date) {
 		this.reg_date = reg_date;
 	}
 
-	public Date getUp_date() {
+	public String getUp_date() {
 		return up_date;
 	}
 
-	public void setUp_date(Date up_date) {
+	public void setUp_date(String up_date) {
 		this.up_date = up_date;
 	}
 
