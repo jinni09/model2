@@ -8,7 +8,7 @@
 <body>
 
 	<script type="text/javascript">
-		location.href = "main.do";
+		location.href = "${pageContext.request.contextPath}/main.do";
 	</script>
 		
 </body>

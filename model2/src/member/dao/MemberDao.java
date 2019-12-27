@@ -189,30 +189,6 @@ public class MemberDao {
 		return mb;
 	}
 
-	public Member infoselect(String m_no) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select m_email, m_passwd, m_nick from member m where m_no=? and m_del_yn='n'";
-		Member mb = new Member();
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m_no);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				mb.setM_email(rs.getString("m_email"));
-				mb.setM_passwd(rs.getString("m_passwd"));
-				mb.setM_nick(rs.getString("m_nick"));
-			}
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		} finally {
-			dbClose(rs, pstmt, conn);
-		}
-		return mb;
-	}
-
 	public int update(Member mb) {
 		int result = 0;
 		Connection conn = null;
