@@ -151,6 +151,10 @@ select {
 	color: #808080;
 }
 
+.btn {
+	font-size: 50px;
+	cursor: pointer;
+}
 
 a:link {color:black; text-decoration:none}
 a:visited {color:black; text-decoration:none}

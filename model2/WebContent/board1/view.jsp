@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/all.min.css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/all.min.js"></script>
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$('#btnLike').click(function(){
+		
+		$("#btnLike").on("click", function () {
 			$.ajax({
 				type : "POST",
 				url : "${pageContext.request.contextPath}/board1/recommendChk.do",
@@ -12,10 +15,17 @@
 					"no" : $('#like_no').val()
 				},
 				success : function(data){
+					var recocount = parseInt($("#reco").text());
+					$("#btnLike").empty();
+					$("#reco").empty();
 					if ($.trim(data) == "TRUE") {
-						$('#btnLike').text("좋아요");
+						$("#btnLike").html('<i class="far fa-thumbs-up"></i>');
+						if(recocount>0) {
+							$("#reco").text(recocount-1);
+						}
 					} else if($.trim(data) == "FALSE"){
-						$('#btnLike').text("좋아요 취소");
+						$("#btnLike").html('<i class="fas fa-thumbs-up"></i>');
+						$("#reco").text(recocount+1);
 					}
 				} 
 			});
@@ -68,26 +78,22 @@
 	
 	<div align="center">
 	<c:if test="${null ne m_no}">
-		<button id="btnLike">
-		<c:if test="${recommend > 0}">
-			좋아요 취소
-		</c:if>
-		<c:if test="${recommend <= 0}">
-			좋아요
-		</c:if>
-		</button>
+		<span class="btn" id="btnLike">
+			<i class="<c:if test='${recommend > 0}'>fas</c:if><c:if test='${recommend <= 0}'>far</c:if> fa-thumbs-up"></i>
+		</span>
 	</c:if>
 	<c:if test="${null eq m_no}">
-		<button id="disableBtnLike" onclick="chk()">좋아요</button>
+		<i class="far fa-thumbs-up btn" id="disableBtnLike" onclick="chk()"></i>
 	</c:if>
+		<p>
+		추천수 : <span id="reco">${brd.recommend}</span>
 		<input type="hidden" id="like_no" value="${no}">
 	</div>
 
 	<p>
 	
 	<div align="center">
-		<button
-			onclick="location.href='list.do?pageNum=${pageNum}'">목록</button>
+		<button onclick="location.href='list.do?pageNum=${pageNum}'">목록</button>
 		<c:if test="${null ne m_no}">
 			<c:if test="${m_no == brd.m_no}">
 				<button onclick="location.href='${pageContext.request.contextPath}/board1/update.do?no=${no}&pageNum=${pageNum}'">수정</button>
