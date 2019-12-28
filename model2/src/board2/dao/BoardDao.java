@@ -1,4 +1,4 @@
-package board1.dao;
+package board2.dao;
 
 import java.sql.*;
 import java.util.*;
@@ -6,7 +6,7 @@ import java.util.*;
 import javax.naming.*;
 import javax.sql.*;
 
-import board1.model.Board;
+import board2.model.Board;
 
 public class BoardDao {
 	
@@ -36,7 +36,7 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "select count(*) from board1 brd, member m where brd.m_no=m.m_no and del_yn='n'";
+		String sql = "select count(*) from board2 brd, member m where brd.m_no=m.m_no and del_yn='n'";
 		String sql2 = "";
 		if(searchType.equals("all")) {
 			sql2 = "and (subject like '%" + searchTxt + "%' or content like '%" + searchTxt + "%') ";
@@ -64,7 +64,7 @@ public class BoardDao {
 	public void updateHit(int no) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update board1 set readcount=readcount+1 where no=?";
+		String sql = "update board2 set readcount=readcount+1 where no=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -91,7 +91,7 @@ public class BoardDao {
 		if(searchTxt.equals("")){
 			sql2 = "";
 		}
-		String sql = "select * from (select rowNum rn, a.* from (select brd.*, m_nick, (select count(*) from recommend rcmd where rcmd.brd_no = brd.no) recommend from board1 brd, member m where brd.m_no=m.m_no and del_yn='n' " + sql2 + "order by no desc) a) where rn between ? and ?";
+		String sql = "select * from (select rowNum rn, a.* from (select brd.*, m_nick from board2 brd, member m where brd.m_no=m.m_no and del_yn='n' " + sql2 + "order by ref desc, ref_step) a) where rn between ? and ?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -104,11 +104,13 @@ public class BoardDao {
 				brd.setSubject(rs.getString("subject"));
 				brd.setContent(rs.getString("content"));
 				brd.setReadcount(rs.getInt("readcount"));
-				brd.setRecommend(rs.getInt("recommend"));
 				brd.setIp(rs.getString("ip"));
 				brd.setReg_date(rs.getString("reg_date"));
 				brd.setUp_date(rs.getString("up_date"));
 				brd.setDel_yn(rs.getString("del_yn"));
+				brd.setRef(rs.getInt("ref"));
+				brd.setRef_step(rs.getInt("ref_step"));
+				brd.setRef_level(rs.getInt("ref_level"));
 				brd.setM_no(rs.getInt("m_no"));
 				brd.setM_nick(rs.getString("m_nick"));
 				list.add(brd);
@@ -126,8 +128,9 @@ public class BoardDao {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "insert into Board1 values(?,?,?,0,?,sysdate,null,'n',?)";
-		String sql1 = "select nvl(max(no),0)+1 from Board1";
+		String sql = "insert into board2 values(?,?,?,0,?,sysdate,null,'n',?,?,?,?)";
+		String sql1 = "select nvl(max(no),0)+1 from board2";
+		String sql2 = "update board2 set ref_step=ref_step+1 where ref=? and ref_step>?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql1);
@@ -136,12 +139,27 @@ public class BoardDao {
 				number = rs.getInt(1);
 			pstmt.close();
 			
+			if (brd.getNo() != 0) {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setInt(1, brd.getRef());
+				pstmt.setInt(2, brd.getRef_step());
+				pstmt.executeUpdate();
+				pstmt.close();
+				brd.setRef_level(brd.getRef_level() + 1);
+				brd.setRef_step(brd.getRef_step() + 1);
+			} else {
+				brd.setRef(number);
+			}
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, number);
 			pstmt.setString(2, brd.getSubject());
 			pstmt.setString(3, brd.getContent());
 			pstmt.setString(4, brd.getIp());
-			pstmt.setInt(5, brd.getM_no());
+			pstmt.setInt(5, brd.getRef());
+			pstmt.setInt(6, brd.getRef_step());
+			pstmt.setInt(7, brd.getRef_level());
+			pstmt.setInt(8, brd.getM_no());
 			result = pstmt.executeUpdate();
 			
 			if(result > 0) {
@@ -163,7 +181,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = 
-				"select brd.*, m.m_nick, (select count(*) from recommend rcmd where rcmd.brd_no = brd.no) recommend from Board1 brd, member m where brd.no=? and brd.m_no=m.m_no";
+				"select brd.*, m.m_nick from board2 brd, member m where brd.no=? and brd.m_no=m.m_no";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -174,10 +192,12 @@ public class BoardDao {
 				brd.setSubject(rs.getString("subject"));
 				brd.setContent(rs.getString("content"));
 				brd.setReadcount(rs.getInt("readcount"));
-				brd.setRecommend(rs.getInt("recommend"));
 				brd.setIp(rs.getString("ip"));
 				brd.setReg_date(rs.getString("reg_date"));
 				brd.setUp_date(rs.getString("up_date"));
+				brd.setRef(rs.getInt("ref"));
+				brd.setRef_step(rs.getInt("ref_step"));
+				brd.setRef_level(rs.getInt("ref_level"));
 				brd.setM_no(rs.getInt("m_no"));
 				brd.setM_nick(rs.getString("m_nick"));
 			}
@@ -193,7 +213,7 @@ public class BoardDao {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update Board1 set subject=?,content=?,up_date=sysdate where no=?";
+		String sql = "update board2 set subject=?,content=?,up_date=sysdate where no=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -213,7 +233,7 @@ public class BoardDao {
 		int result = 0;
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "update Board1 set del_yn='y' where no=?";
+		String sql = "update board2 set del_yn='y' where no=?";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
@@ -225,76 +245,6 @@ public class BoardDao {
 			dbClose(pstmt, conn);
 		}
 		return result;
-	}
-	
-	public int selectRecommend(int no, String m_no) {
-		int result = 0;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql = "select * from recommend where brd_no = ? and m_no = ?";
-		try{
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, no);
-			pstmt.setString(2, m_no);
-			rs = pstmt.executeQuery();
-			if(rs.next()){
-				result = 1;
-			}
-		}catch(Exception e){
-			System.out.println(e.getMessage());
-		}finally {
-			dbClose(rs, pstmt, conn);
-		}
-		return result;
-	}
-	
-	public int recoCheck(int no, String m_no) {
-		int result = 0;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		String sql2 = "select * from recommend where brd_no = ? and m_no = ?";
-		String sql = "insert into recommend values(?,?,sysdate)";
-		String sql3 = "delete from recommend where brd_no = ? and m_no = ?";	
-		conn = getConnection();
-			try {
-				pstmt = conn.prepareStatement(sql2);
-				pstmt.setInt(1, no);
-				pstmt.setString(2, m_no);
-				rs = pstmt.executeQuery();
-				if(rs.next()){
-					rs.close();
-					pstmt.close();
-					pstmt = conn.prepareStatement(sql3);
-					pstmt.setInt(1, no);
-					pstmt.setString(2, m_no);
-					result = pstmt.executeUpdate();
-					if(result > 0){
-						result = 1;
-					}else{
-						result = -1;
-					}
-				}else{
-					rs.close();
-					pstmt.close();
-					pstmt = conn.prepareStatement(sql);
-					pstmt.setInt(1, no);
-					pstmt.setString(2, m_no);
-					result = pstmt.executeUpdate();
-					if(result > 0){
-						result = 0;
-					}else{
-						result = -1;
-					}
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}finally {
-				dbClose(rs, pstmt, conn);
-			}
-		return result; 
 	}
 	
 	public void dbClose(PreparedStatement pstmt, Connection conn) {

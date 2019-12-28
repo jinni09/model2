@@ -6,7 +6,6 @@ public class Board {
 	private String subject;
 	private String content;
 	private int readcount;
-	private int recommend;
 	private String ip;
 	private String reg_date;
 	private String up_date;
@@ -48,14 +47,6 @@ public class Board {
 
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
-	}
-
-	public int getRecommend() {
-		return recommend;
-	}
-
-	public void setRecommend(int recommend) {
-		this.recommend = recommend;
 	}
 
 	public String getIp() {
@@ -141,9 +132,9 @@ public class Board {
 	@Override
 	public String toString() {
 		return "Board [no=" + no + ", subject=" + subject + ", content=" + content + ", readcount=" + readcount
-				+ ", recommend=" + recommend + ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date
-				+ ", del_yn=" + del_yn + ", ref=" + ref + ", ref_step=" + ref_step + ", ref_level=" + ref_level
-				+ ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd + "]";
+				+ ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date + ", del_yn=" + del_yn + ", ref="
+				+ ref + ", ref_step=" + ref_step + ", ref_level=" + ref_level + ", m_no=" + m_no + ", m_nick=" + m_nick
+				+ ", m_passwd=" + m_passwd + "]";
 	}
 
 }

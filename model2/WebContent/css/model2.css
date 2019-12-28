@@ -20,6 +20,14 @@ th {
 input {
 	text-align: left;
 	font-size: 13px;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+textarea {
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px !important;
+	word-break: break-all;
+	white-space: pre-wrap;
 }
 
 font {
@@ -141,19 +149,41 @@ select {
 	padding: 10px;
 }
 
-.date {
-	text-align: right;
-	padding-top: 5px !important;
-	padding-bottom: 5px !important;
-	padding-right: 10px !important;
-	font-size: 13px;
-	font-weight: bold;
-	color: #808080;
+.td0 {
+	padding-top: 0px !important;
+	padding-bottom: 0px !important;
 }
 
 .btn {
 	font-size: 50px;
 	cursor: pointer;
+}
+
+.text {
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.content {
+	width: 100%;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-ms-box-sizing: border-box;
+	-o-box-sizing: border-box;
+	box-sizing: border-box;
+	border-style: groove;
+	border-top: 3px solid #f4f4f4;
+	border-bottom: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	resize: none;
+	overflow: hidden;
 }
 
 a:link {color:black; text-decoration:none}

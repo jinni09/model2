@@ -1,9 +1,9 @@
-package board1.service;
+package board2.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board1.dao.BoardDao;
+import board2.dao.BoardDao;
 import common.service.CommandProcess;
 
 public class DeleteAction implements CommandProcess {
@@ -17,7 +17,7 @@ public class DeleteAction implements CommandProcess {
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("result", result);
 		
-		return "/board1/delete.jsp";
+		return "/board2/delete.jsp";
 	}
 
 }

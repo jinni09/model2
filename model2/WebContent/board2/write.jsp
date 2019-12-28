@@ -4,6 +4,9 @@
 
 	<form action="writePro.do" method="post">
 		<input type="hidden" name="no" value="${no}">
+		<input type="hidden" name="ref" value="${ref}">
+		<input type="hidden" name="ref_step" value="${ref_step}">
+		<input type="hidden" name="ref_level" value="${ref_level}">
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		<input type="hidden" name="m_no" value="${m_no}">
 
@@ -21,7 +24,7 @@
 			</tr>
 			<tr>
 				<td class="td0">
-					<textarea rows="20" class="text" cols="120" name="content" required="required"></textarea>
+					<textarea rows="20" class="text" name="content" required="required"></textarea>
 				</td>
 			</tr>
 			<tr>

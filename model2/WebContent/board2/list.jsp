@@ -18,20 +18,24 @@
 		<tr height="30">
 			<th width="5%">번호</th>
 			<th width="31%">제목</th>
-			<th width="8%">글쓴이</th>
-			<th width="8%">날짜</th>
-			<th width="4%">조회</th>
-			<th width="4%">추천</th>
+			<th width="7%">글쓴이</th>
+			<th width="7%">날짜</th>
+			<th width="5%">조회</th>
 		</tr>
 		
 		<c:set var="tot" value="${total}" />
-		<tr height="1" bgcolor="#e2e2e2"><td colspan="6"></td></tr>
+		<tr height="1" bgcolor="#e2e2e2"><td colspan="5"></td></tr>
 		<c:if test="${not empty list}">
 			<c:forEach var="brd" items="${list}">
 			<tr height="30">
 				<td class="default">${tot}</td>
 				<td class="subject">
-					<a href="${pageContext.request.contextPath}/board1/view.do?no=${brd.no}&pageNum=${nowPage}">${brd.subject}</a>
+					<c:if test="${brd.ref_level > 0}">
+					<c:set var="w" value="${brd.ref_level*10}"></c:set>
+					<img alt="" src="${pageContext.request.contextPath}/img/level.gif" width="${w}" height="10">
+					<img alt="" src="${pageContext.request.contextPath}/img/re.gif">
+					</c:if>
+					<a href="${pageContext.request.contextPath}/board2/view.do?no=${brd.no}&pageNum=${nowPage}">${brd.subject}</a>
 				</td>
 				<td class="nickname">${brd.m_nick}</td>
 				<c:set var="today" value="<%=new java.util.Date()%>" />
@@ -46,15 +50,14 @@
 				</c:if>
 				<td class="default">${date}</td>
 				<td class="default">${brd.readcount}</td>
-				<td class="default">${brd.recommend}</td>
 			</tr>
-			<tr height="1" bgcolor="#e2e2e2"><td colspan="6"></td></tr>
+			<tr height="1" bgcolor="#e2e2e2"><td colspan="5"></td></tr>
 			<c:set var="tot" value="${tot - 1}"></c:set>
 		</c:forEach>
 		</c:if>
 		<c:if test="${empty list}">
 			<tr height="30">
-				<td colspan="6" class="default">데이터가 없습니다</td>
+				<td colspan="5" class="default">데이터가 없습니다</td>
 			</tr>
 		</c:if>
 	</table>
@@ -84,7 +87,7 @@
 		<c:set var="m_no" value="${sessionScope.m_no}"></c:set>
 		<c:if test="${not empty m_no}">
 			<p>
-			<button onclick="location.href='${pageContext.request.contextPath}/board1/write.do?pageNum=${pageNum}'">글쓰기</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/board2/write.do?pageNum=${pageNum}'">글쓰기</button>
 		</c:if>
 		
 		<p>

@@ -1,10 +1,10 @@
-package board1.service;
+package board2.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import board1.dao.BoardDao;
-import board1.model.Board;
+import board2.dao.BoardDao;
+import board2.model.Board;
 import common.service.CommandProcess;
 
 public class UpdateProAction implements CommandProcess {
@@ -25,7 +25,7 @@ public class UpdateProAction implements CommandProcess {
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("brd", brd);
 		
-		return "/board1/updatePro.jsp";
+		return "/board2/updatePro.jsp";
 		
 	}
 }
