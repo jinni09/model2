@@ -1,7 +1,6 @@
 package board1.service;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import board1.dao.BoardDao;
 import common.service.CommandProcess;
