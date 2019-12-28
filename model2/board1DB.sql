@@ -14,7 +14,8 @@ create table board1 (
 alter table board1 add constraint fk_m_no
 foreign key(m_no) references member(m_no);
 
-drop constraint fk_m_no;
+-- 게시판 제약조건 삭제
+alter table board1 drop constraint fk_m_no;
 
 
 --oracle Date 형식 조회 시 시/분/초도 보이게끔 oracle 설정.
