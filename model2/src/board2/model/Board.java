@@ -1,4 +1,4 @@
-package board1.model;
+package board2.model;
 
 public class Board {
 
@@ -11,6 +11,9 @@ public class Board {
 	private String reg_date;
 	private String up_date;
 	private String del_yn;
+	private int ref;		// 답변글끼리 그룹
+	private int ref_step;	// 답변글의 순서
+	private int ref_level;	// 들여쓰기
 	private int m_no;
 	private String m_nick;
 	private String m_passwd;
@@ -86,6 +89,30 @@ public class Board {
 	public void setDel_yn(String del_yn) {
 		this.del_yn = del_yn;
 	}
+	
+	public int getRef() {
+		return ref;
+	}
+
+	public void setRef(int ref) {
+		this.ref = ref;
+	}
+
+	public int getRef_step() {
+		return ref_step;
+	}
+
+	public void setRef_step(int ref_step) {
+		this.ref_step = ref_step;
+	}
+
+	public int getRef_level() {
+		return ref_level;
+	}
+
+	public void setRef_level(int ref_level) {
+		this.ref_level = ref_level;
+	}
 
 	public int getM_no() {
 		return m_no;
@@ -115,7 +142,8 @@ public class Board {
 	public String toString() {
 		return "Board [no=" + no + ", subject=" + subject + ", content=" + content + ", readcount=" + readcount
 				+ ", recommend=" + recommend + ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date
-				+ ", del_yn=" + del_yn + ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd + "]";
+				+ ", del_yn=" + del_yn + ", ref=" + ref + ", ref_step=" + ref_step + ", ref_level=" + ref_level
+				+ ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd + "]";
 	}
 
 }
