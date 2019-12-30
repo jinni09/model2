@@ -8,7 +8,7 @@
 - - -
 #### (Java Project) 
 ###### - Controller 추가(Properties, web.xml), jsp에 있는 java 로직 service class java단으로 이동 
-### model1
+### model2
 ![model2](https://user-images.githubusercontent.com/58936727/71583178-af7ffc80-2b50-11ea-85b4-02314d61a7fc.png)
 
 
