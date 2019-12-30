@@ -22,7 +22,7 @@
 ###### * 게시판 리스트, 게시글 보기를 제외한 모든 기능은 로그인을 한 후 이용 가능
 - - -
 
-![model21](https://user-images.githubusercontent.com/58936727/71584229-1ef7eb00-2b55-11ea-9d19-a54cbbecba91.jpg)
+![model21](https://user-images.githubusercontent.com/58936727/71584596-98dca400-2b56-11ea-9c29-e4faa215c345.jpg)
 
 ![model22](https://user-images.githubusercontent.com/58936727/71584271-43ec5e00-2b55-11ea-8e2d-464550e8cc62.jpg)
 
