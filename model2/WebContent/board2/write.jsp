@@ -11,7 +11,7 @@
 		<input type="hidden" name="m_no" value="${m_no}">
 
 		<table class="view">
-			<caption>게시글 작성</caption>
+			<caption><c:if test="${re ne 1}">게시글</c:if><c:if test="${re eq 1}">답변글</c:if> 작성</caption>
 			<tr>
 				<td class="inputleft">
 					작성자 : <span style="font-weight: bold;">${mb.m_nick}</span>

@@ -14,6 +14,7 @@ public class WriteAction implements CommandProcess {
 	public String requestPro(HttpServletRequest request, HttpServletResponse response) {
 		
 		String pageNum = request.getParameter("pageNum");
+		String re = request.getParameter("re");
 		
 		int no = 0, ref = 0, ref_step = 0, ref_level = 0;
 		if (request.getParameter("no") != null) {
@@ -36,6 +37,7 @@ public class WriteAction implements CommandProcess {
 		request.setAttribute("ref_step", ref_step);
 		request.setAttribute("ref_level", ref_level);
 		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("re", re);
 		
 		return "/board2/write.jsp";
 		

@@ -70,7 +70,7 @@
 			<button onclick="location.href='${pageContext.request.contextPath}/board2/update.do?no=${no}&pageNum=${pageNum}'">수정</button>
 			<button onclick="return brdDelChk()">삭제</button>
 			<c:if test="${brd.refcount == 1}">
-				<button onclick="location.href='${pageContext.request.contextPath}/board2/write.do?no=${no}&pageNum=${pageNum}'">답변</button>
+				<button onclick="location.href='${pageContext.request.contextPath}/board2/write.do?no=${no}&pageNum=${pageNum}&re=1'">답변</button>
 			</c:if>
 		</c:if>
 	</div>
