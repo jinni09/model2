@@ -28,6 +28,12 @@
 
 ![model23](https://user-images.githubusercontent.com/58936727/71584573-777bb800-2b56-11ea-924b-b38ccc675d07.jpg)
 
+![model24](https://user-images.githubusercontent.com/58936727/71584638-dfca9980-2b56-11ea-8919-ee4a7f50e14c.jpg)
+
+![model25](https://user-images.githubusercontent.com/58936727/71584670-130d2880-2b57-11ea-9e48-3f95e19b8236.jpg)
+
+![model26](https://user-images.githubusercontent.com/58936727/71584734-65e6e000-2b57-11ea-9101-b1c01d58df42.jpg)
+
 - - -
 - - -
 - - -
