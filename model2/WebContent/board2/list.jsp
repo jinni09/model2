@@ -14,7 +14,7 @@
 	<p>
 	
 	<table class="brd">
-		<caption>게시판</caption>
+		<caption>답변 게시판</caption>
 		<tr height="30">
 			<th width="5%">번호</th>
 			<th width="31%">제목</th>
