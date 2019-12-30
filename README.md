@@ -7,7 +7,7 @@
 * Tomcat 8.0
 - - -
 #### (Java Project) 
-##### Controller 추가(Properties, web.xml), jsp에 있는 java 로직 service class java단으로 이동 
+###### - Controller 추가(Properties, web.xml), jsp에 있는 java 로직 service class java단으로 이동 
 ### model1
 ![model2](https://user-images.githubusercontent.com/58936727/71583178-af7ffc80-2b50-11ea-85b4-02314d61a7fc.png)
 
@@ -22,7 +22,11 @@
 ###### * 게시판 리스트, 게시글 보기를 제외한 모든 기능은 로그인을 한 후 이용 가능
 - - -
 
+![model21](https://user-images.githubusercontent.com/58936727/71584229-1ef7eb00-2b55-11ea-9d19-a54cbbecba91.jpg)
 
+![model22](https://user-images.githubusercontent.com/58936727/71584271-43ec5e00-2b55-11ea-8e2d-464550e8cc62.jpg)
+
+![model23](https://user-images.githubusercontent.com/58936727/71584573-777bb800-2b56-11ea-924b-b38ccc675d07.jpg)
 
 - - -
 - - -
