@@ -181,7 +181,7 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = 
-				"select brd.*, m.m_nick, (select count(*) from board2 where ref=?) refcount from board2 brd, member m where brd.no=? and brd.m_no=m.m_no";
+				"select brd.*, m.m_nick, (select count(*) from board2 where ref=? and del_yn='n') refcount from board2 brd, member m where brd.no=? and brd.m_no=m.m_no";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
