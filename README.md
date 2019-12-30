@@ -5,7 +5,7 @@
 * Tool: STS 3.7.3
 * JDK 1.8.0 
 * Tomcat 8.0
-* framework: Model(Javabeans), Vuew(JSP), Controller(Action Servlet)
+* framework: Model(Javabeans), View(JSP), Controller(Action Servlet)
 - - -
 #### (Java Project) 
 ###### - Controller 추가(Properties, web.xml), jsp에 있는 java 로직 service class java단으로 이동 
