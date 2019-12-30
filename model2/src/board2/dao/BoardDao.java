@@ -181,11 +181,12 @@ public class BoardDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		String sql = 
-				"select brd.*, m.m_nick from board2 brd, member m where brd.no=? and brd.m_no=m.m_no";
+				"select brd.*, m.m_nick, (select count(*) from board2 where ref=?) refcount from board2 brd, member m where brd.no=? and brd.m_no=m.m_no";
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, no);
+			pstmt.setInt(2, no);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				brd.setNo(rs.getInt("no"));
@@ -200,6 +201,7 @@ public class BoardDao {
 				brd.setRef_level(rs.getInt("ref_level"));
 				brd.setM_no(rs.getInt("m_no"));
 				brd.setM_nick(rs.getString("m_nick"));
+				brd.setRefcount(rs.getInt("refcount"));
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

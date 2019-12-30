@@ -7,7 +7,7 @@
 		<input type="hidden" name="pageNum" value="${pageNum}">
 		
 		<table class="view">
-			<caption>게시글 수정</caption>
+			<caption><c:if test="${brd.ref_level == 0}">게시글</c:if><c:if test="${brd.ref_level == 1}">답변글</c:if> 수정</caption>
 			<tr>
 				<td class="inputleft">
 					작성자 : <span style="font-weight: bold;">${brd.m_nick}</span>

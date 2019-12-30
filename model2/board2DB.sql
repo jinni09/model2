@@ -26,3 +26,6 @@ alter session set nls_date_format='YYYY-MM-DD HH24:MI:SS';
 
 
 -- select문
+select * from 
+(select rowNum rn, a.* from 
+(select brd.*, m_nick from board2 brd, member m where brd.m_no=m.m_no and del_yn='n' order by ref desc, ref_step) a) where rn between 0 and 10;

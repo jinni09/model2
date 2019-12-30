@@ -16,6 +16,7 @@ public class Board {
 	private int m_no;
 	private String m_nick;
 	private String m_passwd;
+	private int refcount;
 
 	public int getNo() {
 		return no;
@@ -129,12 +130,20 @@ public class Board {
 		this.m_passwd = m_passwd;
 	}
 
+	public int getRefcount() {
+		return refcount;
+	}
+
+	public void setRefcount(int refcount) {
+		this.refcount = refcount;
+	}
+
 	@Override
 	public String toString() {
 		return "Board [no=" + no + ", subject=" + subject + ", content=" + content + ", readcount=" + readcount
 				+ ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date + ", del_yn=" + del_yn + ", ref="
 				+ ref + ", ref_step=" + ref_step + ", ref_level=" + ref_level + ", m_no=" + m_no + ", m_nick=" + m_nick
-				+ ", m_passwd=" + m_passwd + "]";
+				+ ", m_passwd=" + m_passwd + ", refcount=" + refcount + "]";
 	}
-
+	
 }

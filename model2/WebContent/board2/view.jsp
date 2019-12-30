@@ -17,6 +17,11 @@
 
 	// 게시글 삭제
 	function brdDelChk() {
+		if ($('#reflevel').val() == 0 && $('#refcount').val() == 2) {
+			alert("해당 글에 답변글이 존재합니다.");
+			return false;
+		}
+		
 		var brdDel = confirm("해당 게시글을 삭제 하시겠습니까?");
 		if (brdDel) {
 			location.href='${pageContext.request.contextPath}/board2/delete.do?no=${no}&pageNum=${pageNum}';
@@ -27,8 +32,10 @@
 </script>
 	
 	<c:if test="${not empty brd}">
+		<input type="hidden" name="ref_level" id="reflevel" value="${brd.ref_level}">
+		<input type="hidden" name="refcount" id="refcount" value="${brd.refcount}">
 		<table class="view">
-			<caption>게시글 보기</caption>
+			<caption><c:if test="${brd.ref_level == 0}">게시글</c:if><c:if test="${brd.ref_level == 1}">답변글</c:if> 보기</caption>
 			<tr>
 				<td class="title">제목</td>
 				<td colspan="3">${brd.subject}</td>
@@ -60,10 +67,10 @@
 	<div align="center">
 		<button onclick="location.href='list.do?pageNum=${pageNum}'">목록</button>
 		<c:if test="${null ne m_no}">
-			<c:if test="${m_no == brd.m_no}">
-				<button onclick="location.href='${pageContext.request.contextPath}/board2/update.do?no=${no}&pageNum=${pageNum}'">수정</button>
-				<button onclick="return brdDelChk()">삭제</button>
+			<button onclick="location.href='${pageContext.request.contextPath}/board2/update.do?no=${no}&pageNum=${pageNum}'">수정</button>
+			<button onclick="return brdDelChk()">삭제</button>
+			<c:if test="${brd.refcount == 1}">
+				<button onclick="location.href='${pageContext.request.contextPath}/board2/write.do?no=${no}&pageNum=${pageNum}'">답변</button>
 			</c:if>
-			<button onclick="location.href='${pageContext.request.contextPath}/board2/write.do?no=${no}&pageNum=${pageNum}'">답변</button>
 		</c:if>
 	</div>

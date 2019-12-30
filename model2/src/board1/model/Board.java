@@ -117,5 +117,5 @@ public class Board {
 				+ ", recommend=" + recommend + ", ip=" + ip + ", reg_date=" + reg_date + ", up_date=" + up_date
 				+ ", del_yn=" + del_yn + ", m_no=" + m_no + ", m_nick=" + m_nick + ", m_passwd=" + m_passwd + "]";
 	}
-
+	
 }
